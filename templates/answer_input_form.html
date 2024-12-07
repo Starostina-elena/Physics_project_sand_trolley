@@ -1,0 +1,26 @@
+<form action="">
+    {{ answer_input_form.hidden_tag() }}
+    <div>
+        <label>{{ answer_input_form.my.label }}</label>
+        {{ answer_input_form.my(placeholder="Введите мю") }}
+    </div>
+    <div>
+        <label>{{ answer_input_form.m0.label }}</label>
+        {{ answer_input_form.m0(placeholder="Введите m0") }}
+    </div>
+    <div>
+        <label>{{ answer_input_form.f.label }}</label>
+        {{ answer_input_form.f(placeholder="Введите F") }}
+    </div>
+    <div>
+        <label>{{ answer_input_form.l.label }}</label>
+        {{ answer_input_form.l(placeholder="Введите l") }}
+    </div>
+    <div>
+        <label>{{ answer_input_form.m.label }}</label>
+        {{ answer_input_form.m(placeholder="Введите m") }}
+    </div>
+    <div class="col-md-12">
+        {{ answer_input_form.submit }}
+    </div>
+</form>
