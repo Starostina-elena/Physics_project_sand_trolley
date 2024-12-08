@@ -1,4 +1,4 @@
-<form action="">
+<form action="" method="post">
     {{ answer_input_form.hidden_tag() }}
     <div>
         <label>{{ answer_input_form.sand_speed.label }}</label>
@@ -19,6 +19,12 @@
     <div>
         <label>{{ answer_input_form.weight_end.label }}</label>
         {{ answer_input_form.weight_end(placeholder="Введите m") }}
+    </div>
+    <div>
+        {{ answer_input_form.generated_sand_speed(placeholder="Введите m") }}
+        {{ answer_input_form.generated_weight_beginning(placeholder="Введите m") }}
+        {{ answer_input_form.generated_strength(placeholder="Введите m") }}
+        {{ answer_input_form.generated_distance(placeholder="Введите m") }}
     </div>
     <div class="col-md-12">
         {{ answer_input_form.submit }}
