@@ -3,12 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>Тест с тележкой</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/trolley.css">
 </head>
 <body>
-{{ message }}
-<br>
-{% include 'trolley.html' %}
-{% include 'answer_input_form.html' %}
+    <h1>Тест с тележкой</h1>
+    <div>{{ message }}</div>
+    <br>
+
+    <!-- Отображаем тележку -->
+    {% include 'trolley.html' %}
+
+    <!-- Формы для ввода -->
+    {% include 'answer_input_form.html' %}
+
+    <!-- Графики -->
+    <div>
+        <h3>Графики</h3>
+        <canvas id="massChart"></canvas>
+        <canvas id="velocityChart"></canvas>
+        <canvas id="accelerationChart"></canvas>
+        <canvas id="distanceChart"></canvas>
+    </div>
+
+    <script>
+        // Получаем данные для графиков из Flask
+        const graphData = {{ graph_data | tojson }};
+        const time = graphData.t;
+
+        // График массы m(t)
+        new Chart(document.getElementById('massChart'), {
+            type: 'line',
+            data: {
+                labels: time,
+                datasets: [{
+                    label: 'm(t)',
+                    data: graphData.m_t,
+                    borderColor: 'blue',
+                    fill: false
+                }]
+            }
+        });
+
+        // График скорости v(t)
+        new Chart(document.getElementById('velocityChart'), {
+            type: 'line',
+            data: {
+                labels: time,
+                datasets: [{
+                    label: 'v(t)',
+                    data: graphData.v_t,
+                    borderColor: 'green',
+                    fill: false
+                }]
+            }
+        });
+
+        // График ускорения a(t)
+        new Chart(document.getElementById('accelerationChart'), {
+            type: 'line',
+            data: {
+                labels: time,
+                datasets: [{
+                    label: 'a(t)',
+                    data: graphData.a_t,
+                    borderColor: 'red',
+                    fill: false
+                }]
+            }
+        });
+
+        // График пути x(t)
+        new Chart(document.getElementById('distanceChart'), {
+            type: 'line',
+            data: {
+                labels: time,
+                datasets: [{
+                    label: 'x(t)',
+                    data: graphData.x_t,
+                    borderColor: 'purple',
+                    fill: false
+                }]
+            }
+        });
+    </script>
 </body>
 </html>

@@ -5,6 +5,7 @@ from flask import Flask, render_template, request
 from forms.answers_input import AnswersInput
 
 from utils.check_similar import check_similar
+from utils.physics import calculate_graph_data
 
 
 app = Flask(__name__)
@@ -13,6 +14,7 @@ app.config['SECRET_KEY'] = 'uesyr67ibF$%!b87NICHINEOI'
 
 @app.route('/', methods=['GET', 'POST'])
 def start_page():
+    global graph_data
     answer_input_form = AnswersInput()
     message = ''
 
@@ -22,6 +24,12 @@ def start_page():
         answer_input_form.generated_weight_beginning.data = random.random() * 10 + 0.1
         answer_input_form.generated_strength.data = random.random() * 10 + 0.1
         answer_input_form.generated_distance.data = random.random() * 10 + 0.1
+
+        graph_data = calculate_graph_data(
+            answer_input_form.generated_weight_beginning.data,
+            answer_input_form.generated_strength.data,
+            answer_input_form.generated_sand_speed.data,
+            answer_input_form.generated_distance.data)
 
     if answer_input_form.validate_on_submit():
         if check_similar(answer_input_form.sand_speed.data, answer_input_form.generated_sand_speed.data) and \
@@ -34,7 +42,12 @@ def start_page():
         else:
             message = 'Неправильный ответ'
 
-    return render_template('index.html', answer_input_form=answer_input_form, message=message)
+    return render_template(
+        'index.html',
+        answer_input_form=answer_input_form,
+        message=message,
+        graph_data=graph_data  # Передаем данные для графиков
+    )
 
 
 if __name__ == '__main__':
