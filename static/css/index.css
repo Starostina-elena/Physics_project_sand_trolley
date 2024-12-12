@@ -28,7 +28,9 @@
 }
 
 header{
-    font-family: vouger;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: #E97700;
     font-size: 60px;
     font-weight: bold;
@@ -37,7 +39,15 @@ header{
     text-align: left;
     margin-bottom: 20px;
 }
-
+.title-container {
+    display: flex;
+    flex-direction: column;
+}
+.title{
+    display: flex;
+    flex-direction: row;
+    font-family: vouger;
+}
 .sub_header{
     font-family: citrica;
     font-size: 30px;
@@ -50,7 +60,10 @@ header{
     font-family: vouger;
     letter-spacing: 5%;
 }
-
+.help {
+    display: flex;
+    align-items: center;
+}
 .condition{
     font-family: inherit;
     font-size:20px;
@@ -76,16 +89,29 @@ header{
 }
 
 .animation {
-    flex: 2 1 60%;
+    flex: 2;
+    padding: 20px;
 }
-
 .condition {
-    flex: 1 1 35%;
+    flex: 1;
+    padding: 20px;
     margin-left: 20px;
 }
 
-.form {
-    flex: 1 1 100%;
+.buttons {
+    display: flex;
+    justify-content: left;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.dump_button, .start_button, .reset_button, .stop_button {
+    padding: 10px 20px;
+    margin: 5px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
 }
 
 .graphs_block {
@@ -99,10 +125,6 @@ header{
     padding: 10px;
 }
 
-.dump_button, .start_button, .reset_button, .stop_button {
-    display: inline-block;
-    padding: 10px;
-    margin: 5px;
-    text-align: center;
-    cursor: pointer;
+.form {
+    flex: 1 1 100%;
 }
