@@ -1,1 +1,29 @@
+*{
+    background-color: #FFFEFB;
+    font-family: steclo;
+}
+@font-face{
+    font-family: "citrica";
+    src:url('citricacyrillic.ttf');
+}
+@font-face{
+    font-family: "steclo";
+    src:url('Pepper\ Type\ -\ Steclo-ExtraLightItalic.otf') format('opentype');
+}
+@font-face{
+    font-family: "vouger";
+    src:url('Voguer Sans Bold.otf') format('opentype');
+}
+.wrapper {
+    position: relative;
+    min-height: 100%;
+}
 
+header{
+    font-family: vouger;
+    color: #E97700;
+}
+
+.sub_header{
+    font-family: citrica;
+}
