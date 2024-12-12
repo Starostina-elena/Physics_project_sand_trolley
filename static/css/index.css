@@ -14,26 +14,95 @@
     font-family: "vouger";
     src:url('Voguer Sans Bold.otf') format('opentype');
 }
+@font-face {
+    font-family: "vougeritalic";
+    src:url('voguersansbolditalic.otf') format('opentype')
+}
 .wrapper {
-    position: relative;
-    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 header{
     font-family: vouger;
     color: #E97700;
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: normal;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 20px;
 }
 
 .sub_header{
     font-family: citrica;
+    font-size: 30px;
+    color:#ffb703;
 }
+.highlight {
+    font-family: vougeritalic;
+}
+.special-spacing {
+    font-family: vouger;
+    letter-spacing: 5%;
+}
+
 .condition{
-    font: inherit;
+    font-family: inherit;
     font-size:20px;
-    line-height:1.6;
+    line-height:1;
     color:#030206;
 }
 .condition::first-letter{
-    font-size: 2em;
+    font-size: 3em;
     font-weight: bold;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.animation, .condition, .form {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.animation {
+    flex: 2 1 60%;
+}
+
+.condition {
+    flex: 1 1 35%;
+    margin-left: 20px;
+}
+
+.form {
+    flex: 1 1 100%;
+}
+
+.graphs_block {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.graph {
+    padding: 10px;
+}
+
+.dump_button, .start_button, .reset_button, .stop_button {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+    cursor: pointer;
 }
