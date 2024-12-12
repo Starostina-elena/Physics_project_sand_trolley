@@ -27,3 +27,13 @@ header{
 .sub_header{
     font-family: citrica;
 }
+.condition{
+    font: inherit;
+    font-size:20px;
+    line-height:1.6;
+    color:#030206;
+}
+.condition::first-letter{
+    font-size: 2em;
+    font-weight: bold;
+}
