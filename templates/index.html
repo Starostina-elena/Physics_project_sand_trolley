@@ -9,42 +9,46 @@
 <body>
     <div class="wrapper">
     <header> 
-        Тележка с песком
-        <div name="sub_header">Интерактивная задача</div>
-        <div name="help"></div>
+        Теле<span class="special-spacing">ж</span><span class="highlight">к</span>а с
+        пе<span class="special-spacing">c</span><span class="highlight">ко</span>м
+        <div class="sub_header">Интерактивная задача</div>
+        <div class="help"></div>
     </header>
-    <div name="content">
-        <div name="animation">
+    <div class="content">
+        <div class="animation">
                <!-- Отображаем тележку -->
              {% include 'trolley.html' %}
-    <div>        
+        </div>
     <div>{{ message }}</div>
-    <div name="condition">
+    <div class="condition">
             Тележка с песком начинает движение по горизонтальной плоскости под действием постоянной силы F Н. Одновременно с началом движения песок начинает высыпаться через отверстие в дне с постоянной скоростью µ кг/с. Найти ускорение a м/с<sup>2</sup> и скорость тележки v м/с в произвольный момент времени t с, если в момент t = 0с тележка с песком имела массу m<sub>0</sub> кг и ее скорость была равна нулю.
             Трением пренебречь.
     </div>
-        <div name="reset_button"></div>
-        <div name="graphs_block">
-            <div class="graph">
-                <canvas id="massChart"></canvas>
-            </div>
-            <div class="graph">
-                <canvas id="velocityChart"></canvas>
-            </div>
-            <div class="graph">
-                <canvas id="accelerationChart"></canvas>
-            </div>
-            <div class="graph">
-                <canvas id="distanceChart"></canvas>
-            </div>
+    <div class="buttons">
+        <div class="dump_button"></div> <!--кнопка сброс-->
+        <div class="start_button"></div>
+        <div class="reset_button"></div>
+        <div class="stop_button"></div>
+    </div>
+    <div class="graphs_block">
+        <div class="graph">
+            <canvas id="massChart"></canvas>
         </div>
-        <div name="start_button"></div>
-        <div name="stop_button"></div>
-        <div name="form">
+        <div class="graph">
+            <canvas id="velocityChart"></canvas>
+        </div>
+        <div class="graph">
+            <canvas id="accelerationChart"></canvas>
+        </div>
+        <div class="graph">
+            <canvas id="distanceChart"></canvas>
+        </div>
+    </div>
+    <div class="form">
          <!-- Формы для ввода -->
-         {% include 'answer_input_form.html' %}
-        </div>         
-
+        {% include 'answer_input_form.html' %}
+    </div>
+    </div>
     <script>
         // Получаем данные для графиков из Flask
         const graphData = {{ graph_data | tojson }};
