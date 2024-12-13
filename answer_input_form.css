@@ -1,0 +1,64 @@
+form {
+    font-family: steclo;
+    color: #030206;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+form div {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    font-style: italic;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #2671bc;
+    outline: none;
+}
+
+input[type="submit"] {
+    font-family: vouger;
+    font-size: 16px;
+    height: 36px;
+    width: 200px;
+    text-align: center;
+    display: inline-block;
+    margin: 0 auto;
+    background-color: #FF8201;
+    color: #FFFEFB;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    background-color: #e97700;
+}
+
+
+.col-md-12 {
+    text-align: center;
+}
