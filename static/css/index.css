@@ -23,11 +23,12 @@
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding: 20px;
+    padding: 0;
     box-sizing: border-box;
 }
 
 header{
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,10 +36,11 @@ header{
     font-size: 60px;
     font-weight: bold;
     letter-spacing: normal;
-    width: 100%;
     text-align: left;
     margin-bottom: 20px;
     border-bottom: 2px solid #e97700;
+    box-sizing: border-box;
+    padding: 0 20px;
 }
 .title-container {
     display: flex;
@@ -110,6 +112,7 @@ header{
     width: 100%;
     justify-content: space-between;
     align-items: flex-start;
+    width: 96%;
 }
 
 .animation, .condition, .form {
