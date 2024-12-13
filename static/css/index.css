@@ -38,6 +38,7 @@ header{
     width: 100%;
     text-align: left;
     margin-bottom: 20px;
+    border-bottom: 2px solid #e97700;
 }
 .title-container {
     display: flex;
@@ -63,16 +64,44 @@ header{
 .help {
     display: flex;
     align-items: center;
+    position: relative;
+    margin: 20px;
 }
+.help button{
+    border:none;
+    background-color: none;
+}
+#popover {
+       width: 40%;
+       height: 80%;
+       overflow: auto;
+       padding: 10px;
+       font-size: 36px;
+       border: 5px solid #2671bc;
+       border-radius: 10px;
+       background-color: #FFFEFB;
+       position: absolute;
+       left: 52%;
+       top: 8%;
+}
+
+
 .condition{
     font-family: inherit;
     font-size:20px;
-    line-height:1;
+    text-align: justify;
+    padding: 10px;
+    margin: 10px;
+    width: fit-content;
     color:#030206;
 }
 .condition::first-letter{
-    font-size: 3em;
+    font-size: 3.5em;
     font-weight: bold;
+    line-height: 0.8;
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
 }
 
 .content {
@@ -89,13 +118,14 @@ header{
 }
 
 .animation {
-    flex: 2;
+    flex: 1.5;
     padding: 20px;
 }
 .condition {
     flex: 1;
     padding: 20px;
     margin-left: 20px;
+    margin-top: 4.2%;
 }
 
 .buttons {
@@ -103,6 +133,18 @@ header{
     justify-content: left;
     margin-top: 20px;
     width: 100%;
+}
+
+.buttons button{
+    height: 36px;
+    width: 100px;
+    border: none;
+    border-radius: 3px;
+    background-color: #2671bc;
+    color: #FFFEFB;
+    font-family: vouger;
+    font-size: 16px;
+    text-align: center;
 }
 
 .dump_button, .start_button, .reset_button, .stop_button {
