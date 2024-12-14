@@ -1,5 +1,4 @@
 from flask_wtf import FlaskForm
-
 from wtforms import FloatField, SubmitField, HiddenField
 from wtforms.validators import DataRequired
 
@@ -12,6 +11,7 @@ class AnswersInput(FlaskForm):
     weight_end = FloatField('m', validators=[DataRequired(message='Это поле обязательное')])
     generated_sand_speed = HiddenField()
     generated_weight_beginning = HiddenField()
+    generated_weight_end = HiddenField()
     generated_strength = HiddenField()
     generated_distance = HiddenField()
     submit = SubmitField('Проверить')

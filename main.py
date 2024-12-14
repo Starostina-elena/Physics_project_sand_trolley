@@ -1,12 +1,10 @@
 import random
-
 from flask import Flask, render_template, request
-
 from forms.answers_input import AnswersInput
-
 from utils.check_similar import check_similar
 from utils.physics import calculate_graph_data
 
+import numpy as np
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'uesyr67ibF$%!b87NICHINEOI'
@@ -19,26 +17,40 @@ def start_page():
     message = ''
 
     if request.method == 'GET':
-        answer_input_form.generated_sand_speed.data = random.random() * 10 + 0.1
-        # TODO: установить адекватные границы для всех значений
-        answer_input_form.generated_weight_beginning.data = random.random() * 10 + 0.1
-        answer_input_form.generated_strength.data = random.random() * 10 + 0.1
-        answer_input_form.generated_distance.data = random.random() * 10 + 0.1
+        # Генерация начальной массы тележки в диапазоне 50-200 кг
+        m0 = random.uniform(50, 200)
 
-        graph_data = calculate_graph_data(
-            answer_input_form.generated_weight_beginning.data,
-            answer_input_form.generated_strength.data,
-            answer_input_form.generated_sand_speed.data,
-            answer_input_form.generated_distance.data)
+        # Конечная масса 50-80% от начальной
+        generated_weight_end = m0 * random.uniform(0.5, 0.8)
+
+        # Коэффициент песка 2-5% от начальной массы
+        mu = m0 * random.uniform(0.02, 0.05)
+
+        F = m0 * random.uniform(0.5, 3)
+
+        # Заполняем форму
+        answer_input_form.generated_sand_speed.data = mu
+        answer_input_form.generated_weight_beginning.data = m0
+        answer_input_form.generated_weight_end.data = generated_weight_end
+        answer_input_form.generated_strength.data = F
+
+        # Вычисляем путь l до конечного времени t
+        t_max = (m0 - generated_weight_end) / mu
+        l = abs((F / mu) * (t_max - (m0 / mu) * np.log(m0 / generated_weight_end)))
+
+        # Заполняем результат в форму
+        answer_input_form.generated_distance.data = l
+
+        # Генерируем данные для графиков
+        graph_data = calculate_graph_data(m0, F, mu, generated_weight_end)
 
     if answer_input_form.validate_on_submit():
-        if check_similar(answer_input_form.sand_speed.data, answer_input_form.generated_sand_speed.data) and \
-                check_similar(answer_input_form.weight_beginning.data, answer_input_form.generated_weight_beginning.data) and \
-                check_similar(answer_input_form.strength.data, answer_input_form.generated_strength.data) and \
-                check_similar(answer_input_form.distance.data, answer_input_form.generated_distance.data):
+        if (check_similar(answer_input_form.sand_speed.data, answer_input_form.generated_sand_speed.data)
+                and check_similar(answer_input_form.weight_beginning.data, answer_input_form.generated_weight_beginning.data)
+                and check_similar(answer_input_form.strength.data, answer_input_form.generated_strength.data)
+                and check_similar(answer_input_form.distance.data, answer_input_form.generated_distance.data)
+                and check_similar(answer_input_form.weight_end.data, answer_input_form.generated_weight_end.data)):
             message = 'OK'
-            # TODO: тут еще должна быть проверка на то, что конечная масса посчитана правильно, я что-то туплю,
-            # как это находить((
         else:
             message = 'Неправильный ответ'
 

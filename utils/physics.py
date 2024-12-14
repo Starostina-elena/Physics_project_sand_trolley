@@ -1,12 +1,13 @@
 import numpy as np
 
 
-def calculate_graph_data(m0, F, mu, l, steps=100):
-    # Вычисление времени, необходимого для того, чтобы масса уменьшилась до m_end
-    t_max = (m0 - m0 * 0.8) / mu  # Время для того, чтобы масса уменьшилась до 80% от начальной
+def calculate_graph_data(m0, F, mu, m_end):
+    # Время до достижения конечной массы
+    t_max = (m0 - m_end) / mu
 
     # Временная ось
-    t = np.linspace(0, t_max, steps)
+    t = np.linspace(0, t_max, round(t_max / 0.1))
+    print(t)
 
     # Масса в момент времени t
     m_t = m0 - mu * t
@@ -18,7 +19,7 @@ def calculate_graph_data(m0, F, mu, l, steps=100):
     a_t = F / m_t
 
     # Позиция в момент времени t
-    x_t = (F / mu) * (t - (m0 / mu) * np.log(m0 / m_t))
+    x_t = abs((F / mu) * (t - (m0 / mu) * np.log(m0 / m_t)))
 
     return {
         "t": t.tolist(),
