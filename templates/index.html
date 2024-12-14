@@ -46,7 +46,7 @@
             </div>
             <div class="buttons">
                 <div class="dump_button">
-                    <button name="dump_button" id="resetButton" onclick="window.location.reload()">Cброс</button>
+                    <button name="dump_button" id="resetButton" onclick="window.location.href = '/'">Cброс</button>
                 </div>
                 <div class="start_button">
                     <button name="start_button" id="startButton">Пуск</button>
@@ -78,7 +78,6 @@
             <div class="form">
                 <!-- Формы для ввода -->
                 {% include 'answer_input_form.html' %}
-                <div>{{ message }}</div>
             </div>
         </div>
     </div>

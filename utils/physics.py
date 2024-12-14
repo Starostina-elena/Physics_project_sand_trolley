@@ -6,6 +6,7 @@ def calculate_graph_data(m0, F, mu, m_end):
     t_max = (m0 - m_end) / mu
 
     # Временная ось
+    print(t_max, m0, m_end)
     t = np.linspace(0, t_max, round(t_max / 0.1))
     print(t)
 

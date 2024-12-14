@@ -1,32 +1,59 @@
-<form action="" method="post">
-    {{ answer_input_form.hidden_tag() }}
-    <div>
-        <label>{{ answer_input_form.sand_speed.label }}</label>
-        {{ answer_input_form.sand_speed(placeholder="Введите \u03BC") }}
+<div class="form-container">
+    {% if validation_error %}
+    <div class="error-message">{{ message }}</div>
+    {% endif %}
+    {% if correct_answer %}
+    <div class="success-message">{{ message }}</div>
+    {% endif %}
+    <form action="" method="post">
+        {{ answer_input_form.hidden_tag() }}
+        <div>
+            <label>{{ answer_input_form.sand_speed.label }}</label>
+            {{ answer_input_form.sand_speed(placeholder="Введите \u03BC") }}
+        </div>
+        <div>
+            <label>{{ answer_input_form.weight_beginning.label }}</label>
+            {{ answer_input_form.weight_beginning(placeholder="Введите m\u2080") }}
+        </div>
+        <div>
+            <label>{{ answer_input_form.strength.label }}</label>
+            {{ answer_input_form.strength(placeholder="Введите F") }}
+        </div>
+        <div>
+            <label>{{ answer_input_form.distance.label }}</label>
+            {{ answer_input_form.distance(placeholder="Введите l") }}
+        </div>
+        <div>
+            <label>{{ answer_input_form.weight_end.label }}</label>
+            {{ answer_input_form.weight_end(placeholder="Введите m") }}
+        </div>
+        <div class="col-md-12">{{ answer_input_form.submit }}</div>
+    </form>
+    
+    {% if validation_error %}
+    <button id="show-answer-button" style="display: none">
+        Показать ответ
+    </button>
+    {% endif %}
+    
+    <div id="correct-answers" style="display: none">
+        <p>µ: {{ answer_input_form.generated_sand_speed.data }}</p>
+        <p>m₀: {{ answer_input_form.generated_weight_beginning.data }}</p>
+        <p>F: {{ answer_input_form.generated_strength.data }}</p>
+        <p>l: {{ answer_input_form.generated_distance.data }}</p>
+        <p>m: {{ answer_input_form.generated_weight_end.data }}</p>
     </div>
-    <div>
-        <label>{{ answer_input_form.weight_beginning.label }}</label>
-        {{ answer_input_form.weight_beginning(placeholder="Введите m\u2080") }}
-    </div>
-    <div>
-        <label>{{ answer_input_form.strength.label }}</label>
-        {{ answer_input_form.strength(placeholder="Введите F") }}
-    </div>
-    <div>
-        <label>{{ answer_input_form.distance.label }}</label>
-        {{ answer_input_form.distance(placeholder="Введите l") }}
-    </div>
-    <div>
-        <label>{{ answer_input_form.weight_end.label }}</label>
-        {{ answer_input_form.weight_end(placeholder="Введите m") }}
-    </div>
-    <div>
-        {{ answer_input_form.generated_sand_speed(placeholder="Введите m") }}
-        {{ answer_input_form.generated_weight_beginning(placeholder="Введите m") }}
-        {{ answer_input_form.generated_strength(placeholder="Введите m") }}
-        {{ answer_input_form.generated_distance(placeholder="Введите m") }}
-    </div>
-    <div class="col-md-12">
-        {{ answer_input_form.submit }}
-    </div>
-</form>
+</div>
+
+
+<script>
+	const showAnswerButton = document.getElementById('show-answer-button');
+	const correctAnswersDiv = document.getElementById('correct-answers');
+    console.log(correctAnswersDiv);
+
+	showAnswerButton.addEventListener('click', () => {
+		correctAnswersDiv.style.display = 'block';
+		showAnswerButton.style.display = 'none';
+	});
+	showAnswerButton.style.display = 'block';
+</script>

@@ -15,6 +15,8 @@ def start_page():
     global graph_data
     answer_input_form = AnswersInput()
     message = ''
+    validation_error = False
+    correct_answer = False
 
     if request.method == 'GET':
         # Генерация начальной массы тележки в диапазоне 50-200 кг
@@ -45,19 +47,31 @@ def start_page():
         graph_data = calculate_graph_data(m0, F, mu, generated_weight_end)
 
     if answer_input_form.validate_on_submit():
-        if (check_similar(answer_input_form.sand_speed.data, answer_input_form.generated_sand_speed.data)
-                and check_similar(answer_input_form.weight_beginning.data, answer_input_form.generated_weight_beginning.data)
-                and check_similar(answer_input_form.strength.data, answer_input_form.generated_strength.data)
-                and check_similar(answer_input_form.distance.data, answer_input_form.generated_distance.data)
-                and check_similar(answer_input_form.weight_end.data, answer_input_form.generated_weight_end.data)):
-            message = 'OK'
+        if not check_similar(answer_input_form.sand_speed.data, answer_input_form.generated_sand_speed.data):
+            message = 'Введен неверный \u03BC'
+            validation_error = True
+        elif not check_similar(answer_input_form.weight_beginning.data, answer_input_form.generated_weight_beginning.data):
+            message = 'Введен неверный m\u2080'
+            validation_error = True
+        elif not check_similar(answer_input_form.strength.data, answer_input_form.generated_strength.data):
+            message = 'Введен неверный F'
+            validation_error = True
+        elif not check_similar(answer_input_form.distance.data, answer_input_form.generated_distance.data):
+            message = 'Введен неверный l'
+            validation_error = True
+        elif not check_similar(answer_input_form.weight_end.data, answer_input_form.generated_weight_end.data):
+            message = 'Введен неверный m'
+            validation_error = True
         else:
-            message = 'Неправильный ответ'
+            message = 'Правильный ответ!'
+            correct_answer = True
 
     return render_template(
         'index.html',
         answer_input_form=answer_input_form,
         message=message,
+        validation_error=validation_error,
+        correct_answer=correct_answer,
         graph_data=graph_data  # Передаем данные для графиков
     )
 

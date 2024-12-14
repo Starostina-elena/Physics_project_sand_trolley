@@ -186,3 +186,27 @@ header{
     padding: 20px;
     box-sizing: border-box;
 }
+
+#show-answer-button {
+    height: 36px;
+    width: 100px;
+    border: none;
+    border-radius: 3px;
+    background-color: #2671bc;
+    color: #FFFEFB;
+    font-family: vouger;
+    font-size: 16px;
+    text-align: center;
+}
+
+#show-answer-button, #correct-answers {
+    margin-left: 25px;
+}
+
+.error-message {
+    color: red
+}
+
+.success-message {
+    color: green
+}
