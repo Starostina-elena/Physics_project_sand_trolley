@@ -9,135 +9,225 @@
 </head>
 <body>
     <div class="wrapper">
-    <header>
-        <div class="title-container">
-            <div class="title">
-        Теле<span class="special-spacing">ж</span><span class="highlight">к</span>а с
-        пе<span class="special-spacing">c</span><span class="highlight">ко</span>м
+        <header>
+            <div class="title-container">
+                <div class="title">
+                    Теле<span class="special-spacing">ж</span><span class="highlight">к</span>а с
+                    пе<span class="special-spacing">c</span><span class="highlight">ко</span>м
+                </div>
+                <div class="sub_header">Интерактивная задача</div>
             </div>
-        <div class="sub_header">Интерактивная задача</div>
-        </div>
-        <div class="help">
-            <button popovertarget="popover"><img src="static/css/icons8-информация-ios-17-filled-96.png" alt="Информация" width="24" height="24"></button>
-            <div popover id="popover">Внимательно ознакомьтесь с условием интерактивной задачи.
-            Ваша цель найти µ,m<sub>0</sub>, F, l, m с помощью графиков и расчетов.<br><br>
-            Как работает сайт:<br>
-            кнопка "Пуск" - запускает тележку и таймер<br>
-            кнопка "Стоп" - останавливает тележку и таймер<br>
-            кнопка "Сброс" - генерирует новые значения для задачи<br>
-            кнопка "Перезапуск" - обнуляет таймер и позволяет начать движение тележки заново<br><br>
-            Как только будете готовы начать нажмите на кнопку "Пуск", в любой понравившийся вам момент
-            с помощью кнопки "Стоп" остановите тележку и графики, найдите и рассчитайте искомые значения
-            и введите в поля для ответов, нажимайте кнопку "Проверит" и узнайте правильность вашего ответа.
+            <div class="help">
+                <button popovertarget="popover"><img src="static/css/icons8-информация-ios-17-filled-96.png" alt="Информация" width="24" height="24"></button>
+                <div popover id="popover">
+                    Внимательно ознакомьтесь с условием интерактивной задачи.
+                    Ваша цель найти µ, m<sub>0</sub>, F, l, m с помощью графиков и расчетов.<br><br>
+                    Как работает сайт:<br>
+                    кнопка "Пуск" - запускает тележку и таймер<br>
+                    кнопка "Стоп" - останавливает тележку и таймер<br>
+                    кнопка "Сброс" - генерирует новые значения для задачи<br>
+                    кнопка "Перезапуск" - обнуляет таймер и позволяет начать движение тележки заново<br><br>
+                    Как только будете готовы начать нажмите на кнопку "Пуск", в любой понравившийся вам момент
+                    с помощью кнопки "Стоп" остановите тележку и графики, найдите и рассчитайте искомые значения
+                    и введите в поля для ответов, нажимайте кнопку "Проверит" и узнайте правильность вашего ответа.
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="animation">
+                <!-- Отображаем тележку -->
+                {% include 'trolley.html' %}
+            </div>
+            <div class="condition">
+                Тележка с песком начинает движение по горизонтальной плоскости под действием постоянной силы F Н.
+                Одновременно с началом движения песок начинает высыпаться через отверстие в дне с постоянной скоростью µ кг/с.
+                В момент t = 0с тележка с песком имела массу m<sub>0</sub> кг и её скорость была равна нулю.
+                Трением пренебречь.
+            </div>
+            <div class="buttons">
+                <div class="dump_button">
+                    <button name="dump_button" id="resetButton" onclick="window.location.reload()">Cброс</button>
+                </div>
+                <div class="start_button">
+                    <button name="start_button" id="startButton">Пуск</button>
+                </div>
+                <div class="reset_button">
+                    <button name="reset_button" id="restartButton">Перезапуск</button>
+                </div>
+                <div class="stop_button">
+                    <button name="stop_button" id="stopButton" disabled>Стоп</button>
+                </div>
+            </div>
+            <div class="time-display">
+                <span id="currentTime">0.0</span> секунд
+            </div>
+            <div class="graphs_block">
+                <div class="graph">
+                    <canvas id="massChart"></canvas>
+                </div>
+                <div class="graph">
+                    <canvas id="velocityChart"></canvas>
+                </div>
+                <div class="graph">
+                    <canvas id="accelerationChart"></canvas>
+                </div>
+                <div class="graph">
+                    <canvas id="distanceChart"></canvas>
+                </div>
+            </div>
+            <div class="form">
+                <!-- Формы для ввода -->
+                {% include 'answer_input_form.html' %}
+                <div>{{ message }}</div>
             </div>
         </div>
-    </header>
-    <div class="content">
-        <div class="animation">
-               <!-- Отображаем тележку -->
-             {% include 'trolley.html' %}
-        </div>
-    <div class="condition">
-            Тележка с песком начинает движение по горизонтальной плоскости под действием постоянной силы F Н. Одновременно с началом движения песок начинает высыпаться через отверстие в дне с постоянной скоростью µ кг/с.В момент t = 0с тележка с песком имела массу m<sub>0</sub> кг и ее скорость была равна нулю.
-            Трением пренебречь. <!--Найти ускорение a м/с<sup>2</sup>, скорость тележки v м/с в произвольный момент времени t с, если -->
     </div>
-    <div class="buttons">
-        <div class="dump_button">
-            <button name="dump_button">Cброс</button> <!--кнопка сброс-->
-        </div>
-        <div class="start_button">
-            <button name="start_button">Пуск</button>
-        </div>
-        <div class="reset_button">
-            <button name="reset_button">Перезапуск</button> <!-#TODO: перименовать на что-то норальное-->
-        </div>
-        <div class="stop_button">
-            <button name="stop_button">Стоп</button>
-        </div>
-    </div>
-    <div class="graphs_block">
-        <div class="graph">
-            <canvas id="massChart"></canvas>
-        </div>
-        <div class="graph">
-            <canvas id="velocityChart"></canvas>
-        </div>
-        <div class="graph">
-            <canvas id="accelerationChart"></canvas>
-        </div>
-        <div class="graph">
-            <canvas id="distanceChart"></canvas>
-        </div>
-    </div>
-    <div class="form">
-         <!-- Формы для ввода -->
-        {% include 'answer_input_form.html' %}
-        <div>{{ message }}</div>
-    </div>
-    </div>
+
     <script>
-
-
-
         // Получаем данные для графиков из Flask
         const graphData = {{ graph_data | tojson }};
         const time = graphData.t;
 
-        // График массы m(t)
-        new Chart(document.getElementById('massChart'), {
+        // Инициализация графиков
+        const massChart = new Chart(document.getElementById('massChart'), {
             type: 'line',
             data: {
-                labels: time,
+                labels: [],
                 datasets: [{
                     label: 'm(t)',
-                    data: graphData.m_t,
+                    data: [],
                     borderColor: '#8ecae6',
                     fill: false
                 }]
             }
         });
 
-        // График скорости v(t)
-        new Chart(document.getElementById('velocityChart'), {
+        const velocityChart = new Chart(document.getElementById('velocityChart'), {
             type: 'line',
             data: {
-                labels: time,
+                labels: [],
                 datasets: [{
                     label: 'v(t)',
-                    data: graphData.v_t,
+                    data: [],
                     borderColor: '#ffb703',
                     fill: false
                 }]
             }
         });
 
-        // График ускорения a(t)
-        new Chart(document.getElementById('accelerationChart'), {
+        const accelerationChart = new Chart(document.getElementById('accelerationChart'), {
             type: 'line',
             data: {
-                labels: time,
+                labels: [],
                 datasets: [{
                     label: 'a(t)',
-                    data: graphData.a_t,
+                    data: [],
                     borderColor: '#ffb703',
                     fill: false
                 }]
             }
         });
 
-        // График пути x(t)
-        new Chart(document.getElementById('distanceChart'), {
+        const distanceChart = new Chart(document.getElementById('distanceChart'), {
             type: 'line',
             data: {
-                labels: time,
+                labels: [],
                 datasets: [{
                     label: 'x(t)',
-                    data: graphData.x_t,
+                    data: [],
                     borderColor: '#8ecae6',
                     fill: false
                 }]
             }
         });
+
+        // Кнопки управления
+        let animationFrameId;
+        let isRunning = false;
+        let startTime = null;
+        let elapsedTime = 0;
+
+        // Кнопка Пуск
+        document.getElementById('startButton').addEventListener('click', () => {
+            if (!isRunning) {
+                // Начинаем анимацию заново
+                isRunning = true;
+                startTime = Date.now() - elapsedTime * 1000; // Возобновляем с текущего времени
+                animate();
+
+                // Делаем кнопку Пуск неактивной
+                document.getElementById('startButton').disabled = true;
+
+                // Делаем кнопку Стоп активной
+                document.getElementById('stopButton').disabled = false;
+            }
+        });
+
+        // Кнопка Стоп
+        document.getElementById('stopButton').addEventListener('click', () => {
+            if (isRunning) {
+                // Останавливаем анимацию
+                isRunning = false;
+                cancelAnimationFrame(animationFrameId);
+                elapsedTime = (Date.now() - startTime) / 1000; // Запоминаем текущее время
+            }
+        });
+
+        // Кнопка Перезапуск
+        document.getElementById('restartButton').addEventListener('click', () => {
+            isRunning = false;
+            cancelAnimationFrame(animationFrameId);
+            elapsedTime = 0;
+            document.getElementById('startButton').disabled = false;
+            document.getElementById('stopButton').disabled = true;
+            updateCharts(0);
+        });
+
+
+
+        // Функция анимации
+        function animate() {
+    const currentElapsedTime = Math.round(((Date.now() - startTime) / 1000) * 10) / 10; // Время в секундах, округленное до десятых
+    const maxTime = Math.max(...time);
+
+    if (currentElapsedTime >= maxTime) {
+        isRunning = false;
+        cancelAnimationFrame(animationFrameId);
+
+        // Выводим сообщение о завершении эксперимента
+        document.getElementById('experimentStatus').innerText = "Эксперимент завершен";
+        return;
+    }
+
+    // Обновляем отображаемое время
+    document.getElementById('currentTime').innerText = currentElapsedTime;
+
+    const currentIndex = time.findIndex(t => t >= currentElapsedTime);
+    updateCharts(currentIndex);
+    animationFrameId = requestAnimationFrame(animate);
+}
+
+        // Обновляем графики
+        function updateCharts(index) {
+            massChart.data.labels = time.slice(0, index);
+            massChart.data.datasets[0].data = graphData.m_t.slice(0, index);
+            massChart.update();
+
+            velocityChart.data.labels = time.slice(0, index);
+            velocityChart.data.datasets[0].data = graphData.v_t.slice(0, index);
+            velocityChart.update();
+
+            accelerationChart.data.labels = time.slice(0, index);
+            accelerationChart.data.datasets[0].data = graphData.a_t.slice(0, index);
+            accelerationChart.update();
+
+            distanceChart.data.labels = time.slice(0, index);
+            distanceChart.data.datasets[0].data = graphData.x_t.slice(0, index);
+            distanceChart.update();
+        }
+
+        // Инициализация графиков с начальными данными
+        updateCharts(0);
     </script>
 </body>
 </html>
