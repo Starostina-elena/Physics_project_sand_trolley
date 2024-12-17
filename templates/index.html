@@ -86,6 +86,7 @@
         // Получаем данные для графиков из Flask
         const graphData = {{ graph_data | tojson }};
         const time = graphData.t;
+        const all_time = time[time.length - 1];
 
         // Инициализация графиков
         const massChart = new Chart(document.getElementById('massChart'), {
@@ -216,7 +217,7 @@
 function updateTrolley() {
     document.getElementById('trolleySvg').outerHTML = '<svg width="800" height="200" viewBox="0 0 800 200" id="trolleySvg">...</svg>';
     const svg = document.getElementById("trolleySvg");
-    trolley_coords = Number(trolley_coords) + Number(current_speed / distance * 11);
+    trolley_coords = Number(trolley_coords) + Number(current_speed / distance * 13);
 
     const main_cart = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
     main_cart.setAttribute("points", trolley_coords.toString() + ",100 " + (trolley_coords + 190).toString() + ",100 " + (trolley_coords + 170).toString() + ",150 " + (trolley_coords + 20).toString() + ",150");
@@ -224,7 +225,7 @@ function updateTrolley() {
     svg.append(main_cart);
 
     const sand = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-    sand.setAttribute("points", trolley_coords.toString() + ",100 " + (trolley_coords + 190).toString() + ",100 " + (trolley_coords + 170).toString() + ",150 " + (trolley_coords + 20).toString() + ",150");
+    sand.setAttribute("points", (trolley_coords + 20 * (1 - sand_level * 0.87)).toString() + "," + (100 + 100 * (1 - sand_level)).toString() + " " + (trolley_coords + 170 + 20 * sand_level * 0.87).toString() + "," + (100 + 100 * (1 - sand_level)).toString() + " " + (trolley_coords + 170).toString() + ",150 " + (trolley_coords + 20).toString() + ",150");
     sand.setAttribute("class", "sand");
     svg.append(sand);
 
@@ -242,11 +243,15 @@ function updateTrolley() {
     right_wheel.setAttribute("class", "wheel");
     svg.appendChild(right_wheel);
 
+    sand_level = sand_level - sand_speed;
 }
 
 let trolley_coords = 50
 let current_speed = 0;
 let distance = {{ answer_input_form.generated_distance.data }};
+let sand_speed = {{ answer_input_form.generated_weight_end.data }} / {{ answer_input_form.generated_weight_beginning.data }} / all_time / 100;
+
+let sand_level = 1
         // Обновляем графики
         function updateCharts(index) {
             massChart.data.labels = time.slice(0, index);
