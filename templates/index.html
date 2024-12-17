@@ -169,6 +169,8 @@
                 isRunning = false;
                 cancelAnimationFrame(animationFrameId);
                 elapsedTime = (Date.now() - startTime) / 1000; // Запоминаем текущее время
+                document.getElementById('startButton').disabled = false;
+                document.getElementById('stopButton').disabled = true;
             }
         });
 
@@ -179,6 +181,7 @@
             elapsedTime = 0;
             document.getElementById('startButton').disabled = false;
             document.getElementById('stopButton').disabled = true;
+            document.getElementById('currentTime').innerText = '0.0';
             updateCharts(0);
         });
 
