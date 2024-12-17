@@ -182,6 +182,9 @@
             document.getElementById('startButton').disabled = false;
             document.getElementById('stopButton').disabled = true;
             document.getElementById('currentTime').innerText = '0.0';
+            trolley_coords = 50
+            current_speed = 0;
+            updateTrolley();
             updateCharts(0);
         });
 
@@ -206,9 +209,44 @@
 
     const currentIndex = time.findIndex(t => t >= currentElapsedTime);
     updateCharts(currentIndex);
+    updateTrolley();
     animationFrameId = requestAnimationFrame(animate);
 }
 
+function updateTrolley() {
+    document.getElementById('trolleySvg').outerHTML = '<svg width="800" height="200" viewBox="0 0 800 200" id="trolleySvg">...</svg>';
+    const svg = document.getElementById("trolleySvg");
+    trolley_coords = Number(trolley_coords) + Number(current_speed / distance * 11);
+
+    const main_cart = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    main_cart.setAttribute("points", trolley_coords.toString() + ",100 " + (trolley_coords + 190).toString() + ",100 " + (trolley_coords + 170).toString() + ",150 " + (trolley_coords + 20).toString() + ",150");
+    main_cart.setAttribute("class", "cart");
+    svg.append(main_cart);
+
+    const sand = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    sand.setAttribute("points", trolley_coords.toString() + ",100 " + (trolley_coords + 190).toString() + ",100 " + (trolley_coords + 170).toString() + ",150 " + (trolley_coords + 20).toString() + ",150");
+    sand.setAttribute("class", "sand");
+    svg.append(sand);
+
+    const left_wheel = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    left_wheel.setAttribute("cx", (trolley_coords + 40).toString());
+    left_wheel.setAttribute("cy", "160");
+    left_wheel.setAttribute("r", "15");
+    left_wheel.setAttribute("class", "wheel");
+    svg.appendChild(left_wheel);
+
+    const right_wheel = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    right_wheel.setAttribute("cx", (trolley_coords + 150).toString());
+    right_wheel.setAttribute("cy", "160");
+    right_wheel.setAttribute("r", "15");
+    right_wheel.setAttribute("class", "wheel");
+    svg.appendChild(right_wheel);
+
+}
+
+let trolley_coords = 50
+let current_speed = 0;
+let distance = {{ answer_input_form.generated_distance.data }};
         // Обновляем графики
         function updateCharts(index) {
             massChart.data.labels = time.slice(0, index);
@@ -217,6 +255,7 @@
 
             velocityChart.data.labels = time.slice(0, index);
             velocityChart.data.datasets[0].data = graphData.v_t.slice(0, index);
+            current_speed = graphData.v_t.slice(index, index + 1);
             velocityChart.update();
 
             accelerationChart.data.labels = time.slice(0, index);
