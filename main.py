@@ -51,19 +51,20 @@ def start_page():
         validation_error = True
     if answer_input_form.validate_on_submit():
         if not check_similar(answer_input_form.sand_speed.data, answer_input_form.generated_sand_speed.data):
-            message = 'Введен неверный \u03BC'
+            message += 'Введен неверный \u03BC' + '<br>'
             validation_error = True
-        elif not check_similar(answer_input_form.weight_beginning.data, answer_input_form.generated_weight_beginning.data):
-            message = 'Введен неверный m\u2080'
+        if not check_similar(answer_input_form.weight_beginning.data,
+                             answer_input_form.generated_weight_beginning.data):
+            message += 'Введен неверный m\u2080' + '<br>'
             validation_error = True
-        elif not check_similar(answer_input_form.strength.data, answer_input_form.generated_strength.data):
-            message = 'Введен неверный F'
+        if not check_similar(answer_input_form.strength.data, answer_input_form.generated_strength.data):
+            message += 'Введен неверный F' + '<br>'
             validation_error = True
-        elif not check_similar(answer_input_form.distance.data, answer_input_form.generated_distance.data):
-            message = 'Введен неверный l'
+        if not check_similar(answer_input_form.distance.data, answer_input_form.generated_distance.data):
+            message += 'Введен неверный l' + '<br>'
             validation_error = True
-        elif not check_similar(answer_input_form.weight_end.data, answer_input_form.generated_weight_end.data):
-            message = 'Введен неверный m'
+        if not check_similar(answer_input_form.weight_end.data, answer_input_form.generated_weight_end.data):
+            message += 'Введен неверный m' + '<br>'
             validation_error = True
         else:
             message = 'Правильный ответ!'

@@ -1,6 +1,6 @@
 <div class="form-container">
     {% if validation_error %}
-    <div class="error-message">{{ message }}</div>
+    <div class="error-message">{{ message|safe }}</div>
     {% endif %}
     {% if correct_answer %}
     <div class="success-message">{{ message }}</div>
@@ -50,10 +50,11 @@
 	const showAnswerButton = document.getElementById('show-answer-button');
 	const correctAnswersDiv = document.getElementById('correct-answers');
     console.log(correctAnswersDiv);
-
-	showAnswerButton.addEventListener('click', () => {
-		correctAnswersDiv.style.display = 'block';
-		showAnswerButton.style.display = 'none';
-	});
-	showAnswerButton.style.display = 'block';
+    if (showAnswerButton) {
+        showAnswerButton.addEventListener('click', () => {
+            correctAnswersDiv.style.display = 'block';
+            showAnswerButton.style.display = 'none';
+	    });
+	    showAnswerButton.style.display = 'block';
+    }
 </script>
