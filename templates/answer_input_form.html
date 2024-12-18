@@ -1,6 +1,6 @@
 <div class="form-container">
     {% if validation_error %}
-    <div class="error-message">{{ message }}</div>
+    <div class="error-message">{{ message|safe }}</div>
     {% endif %}
     {% if correct_answer %}
     <div class="success-message">{{ message }}</div>
