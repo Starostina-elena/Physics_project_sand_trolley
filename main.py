@@ -70,14 +70,25 @@ def start_page():
             message = 'Правильный ответ!'
             correct_answer = True
 
-    return render_template(
-        'index.html',
-        answer_input_form=answer_input_form,
-        message=message,
-        validation_error=validation_error,
-        correct_answer=correct_answer,
-        graph_data=graph_data  # Передаем данные для графиков
-    )
+    try:
+        return render_template(
+            'index.html',
+            answer_input_form=answer_input_form,
+            message=message,
+            validation_error=validation_error,
+            correct_answer=correct_answer,
+            graph_data=graph_data  # Передаем данные для графиков
+        )
+    except NameError:
+        return render_template(
+            'index.html',
+            answer_input_form=answer_input_form,
+            message=message,
+            validation_error=validation_error,
+            correct_answer=correct_answer,
+            graph_data=None  # Передаем данные для графиков
+        )
+
 
 
 if __name__ == '__main__':
