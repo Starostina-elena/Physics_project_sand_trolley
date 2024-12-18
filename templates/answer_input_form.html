@@ -50,10 +50,11 @@
 	const showAnswerButton = document.getElementById('show-answer-button');
 	const correctAnswersDiv = document.getElementById('correct-answers');
     console.log(correctAnswersDiv);
-    if (!showAnswerButton) return;
-	showAnswerButton.addEventListener('click', () => {
-		correctAnswersDiv.style.display = 'block';
-		showAnswerButton.style.display = 'none';
-	});
-	showAnswerButton.style.display = 'block';
+    if (showAnswerButton) {
+        showAnswerButton.addEventListener('click', () => {
+            correctAnswersDiv.style.display = 'block';
+            showAnswerButton.style.display = 'none';
+	    });
+	    showAnswerButton.style.display = 'block';
+    }
 </script>
