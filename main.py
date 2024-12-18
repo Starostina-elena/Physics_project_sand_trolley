@@ -50,6 +50,7 @@ def start_page():
         message = 'Физика любит числа :)'
         validation_error = True
     if answer_input_form.validate_on_submit():
+        print(graph_data)
         if not check_similar(answer_input_form.sand_speed.data, answer_input_form.generated_sand_speed.data):
             message += 'Введен неверный \u03BC' + '<br>'
             validation_error = True
