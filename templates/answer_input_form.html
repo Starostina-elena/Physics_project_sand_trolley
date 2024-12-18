@@ -37,11 +37,11 @@
     {% endif %}
     
     <div id="correct-answers" style="display: none">
-        <p>µ: {{ answer_input_form.generated_sand_speed.data }}</p>
-        <p>m₀: {{ answer_input_form.generated_weight_beginning.data }}</p>
-        <p>F: {{ answer_input_form.generated_strength.data }}</p>
-        <p>l: {{ answer_input_form.generated_distance.data }}</p>
-        <p>m: {{ answer_input_form.generated_weight_end.data }}</p>
+        <p>µ: {{ answer_input_form.generated_sand_speed.data | float | round(2) }}</p>
+        <p>m₀: {{ answer_input_form.generated_weight_beginning.data | float | round(2) }}</p>
+        <p>F: {{ answer_input_form.generated_strength.data | float | round(2) }}</p>
+        <p>l: {{ answer_input_form.generated_distance.data | float | round(2) }}</p>
+        <p>m: {{ answer_input_form.generated_weight_end.data | float | round(2) }}</p>
     </div>
 </div>
 

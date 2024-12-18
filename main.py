@@ -46,6 +46,9 @@ def start_page():
         # Генерируем данные для графиков
         graph_data = calculate_graph_data(m0, F, mu, generated_weight_end)
 
+    if request.method == 'POST' and not answer_input_form.validate_on_submit():
+        message = 'Физика любит числа :)'
+        validation_error = True
     if answer_input_form.validate_on_submit():
         if not check_similar(answer_input_form.sand_speed.data, answer_input_form.generated_sand_speed.data):
             message = 'Введен неверный \u03BC'

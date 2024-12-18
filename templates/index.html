@@ -29,7 +29,7 @@
                     кнопка "Перезапуск" - обнуляет таймер и позволяет начать движение тележки заново<br><br>
                     Как только будете готовы начать нажмите на кнопку "Пуск", в любой понравившийся вам момент
                     с помощью кнопки "Стоп" остановите тележку и графики, найдите и рассчитайте искомые значения
-                    и введите в поля для ответов, нажимайте кнопку "Проверит" и узнайте правильность вашего ответа.
+                    и введите в поля для ответов, нажимайте кнопку "Проверить" и узнайте правильность вашего ответа.
                 </div>
             </div>
         </header>
@@ -185,6 +185,7 @@
             document.getElementById('currentTime').innerText = '0.0';
             trolley_coords = 50
             current_speed = 0;
+            sand_level = 1;
             updateTrolley();
             updateCharts(0);
         });
@@ -250,8 +251,8 @@ let trolley_coords = 50
 let current_speed = 0;
 let distance = {{ answer_input_form.generated_distance.data }};
 let sand_speed = {{ answer_input_form.generated_weight_end.data }} / {{ answer_input_form.generated_weight_beginning.data }} / all_time / 100;
-
 let sand_level = 1
+
         // Обновляем графики
         function updateCharts(index) {
             massChart.data.labels = time.slice(0, index);
