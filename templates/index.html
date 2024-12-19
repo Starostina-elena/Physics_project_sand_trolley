@@ -220,7 +220,7 @@
 function updateTrolley() {
     document.getElementById('trolleySvg').outerHTML = '<svg width="800" height="200" viewBox="0 0 800 200" id="trolleySvg">...</svg>';
     const svg = document.getElementById("trolleySvg");
-    trolley_coords = Number(trolley_coords) + Number(current_speed / distance * 13);
+    trolley_coords = Number(trolley_coords) + Number(current_speed / distance * 12);
 
     const main_cart = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
     main_cart.setAttribute("points", trolley_coords.toString() + ",100 " + (trolley_coords + 190).toString() + ",100 " + (trolley_coords + 170).toString() + ",150 " + (trolley_coords + 20).toString() + ",150");
