@@ -106,6 +106,9 @@ header{
     margin-top: 5px;
 }
 
+.warning{
+    color:#E97700;
+}
 .content {
     display: flex;
     flex-wrap: wrap;
