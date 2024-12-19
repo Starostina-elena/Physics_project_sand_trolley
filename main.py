@@ -55,7 +55,7 @@ def start_page():
         if not check_similar(answer_input_form.sand_speed.data, answer_input_form.generated_sand_speed.data):
             message += 'Введен неверный \u03BC' + '<br>'
             validation_error = True
-            if not check_similar(answer_input_form.weight_beginning.data,
+        if not check_similar(answer_input_form.weight_beginning.data,
                              answer_input_form.generated_weight_beginning.data):
             message += 'Введен неверный m\u2080' + '<br>'
             validation_error = True
