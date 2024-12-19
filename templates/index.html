@@ -220,7 +220,7 @@
 function updateTrolley() {
     document.getElementById('trolleySvg').outerHTML = '<svg width="800" height="200" viewBox="0 0 800 200" id="trolleySvg">...</svg>';
     const svg = document.getElementById("trolleySvg");
-    trolley_coords = Number(trolley_coords) + Number(current_speed / distance * 12);
+    trolley_coords = Number(trolley_coords) + Number(current_speed / distance * 10);
 
     const main_cart = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
     main_cart.setAttribute("points", trolley_coords.toString() + ",100 " + (trolley_coords + 190).toString() + ",100 " + (trolley_coords + 170).toString() + ",150 " + (trolley_coords + 20).toString() + ",150");
@@ -252,7 +252,7 @@ function updateTrolley() {
 let trolley_coords = 50
 let current_speed = 0;
 let distance = {{ answer_input_form.generated_distance.data }};
-let sand_speed = {{ answer_input_form.generated_weight_end.data }} / {{ answer_input_form.generated_weight_beginning.data }} / all_time / 100;
+let sand_speed = {{ answer_input_form.generated_weight_end.data }} / {{ answer_input_form.generated_weight_beginning.data }} / all_time / 150;
 let sand_level = 1
 
         // Обновляем графики
